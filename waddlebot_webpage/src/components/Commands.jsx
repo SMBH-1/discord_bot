@@ -43,6 +43,9 @@ function Commands() {
               name={"!lookup"}
               description="look up a WoW character to determine their highest arena achievement"
             />
+            <CommandCard 
+              
+            />
           </Col>
         </Row>
       </Col>
