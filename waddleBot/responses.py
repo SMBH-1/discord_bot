@@ -1,5 +1,5 @@
 import random 
-from features import zackfunc
+from features import zackfunc, spencefunc
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -30,6 +30,13 @@ def handle_response(message) -> str:
     
     if p_message.startswith('!lookup'):
         return zackfunc.glad_check(p_message)
+
+    # Chatbot commands
+    if p_message == '!helpbot':
+        return spencefunc.helpbot(p_message)
+
+    if p_message == '!chatbot':
+        return spencefunc.chatbot(p_message)
         
         
             
