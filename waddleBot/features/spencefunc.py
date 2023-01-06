@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 bot.remove_command('help')
 
 @bot.command()
-async def help(ctx):
+async def helpbot(ctx):
     embed = discord.Embed(
         title = 'Bot Command',
         description = 'Welcome to the help section. Here are all the commands for the chatbot.',
@@ -27,7 +27,7 @@ async def help(ctx):
     embed.set_thumbnail(url='https://www.longboarderlabs.com/wp-content/uploads/2019/11/DGK-X-BRUCE-LEE-STICKERS-FIERCE-25PK-001-500x500.jpg')
 
     embed.add_field(
-        name = '!help', 
+        name = '!helpbot', 
         value = 'List all the commands',
         inline = False
     )
