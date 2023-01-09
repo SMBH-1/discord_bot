@@ -1,5 +1,5 @@
 import random 
-from features import zackfunc, spencefunc
+from features import zackfunc, spencefunc, dariusfunc
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -37,6 +37,15 @@ def handle_response(message) -> str:
 
     if p_message == '!chatbot':
         return spencefunc.chatbot(p_message)
+    
+
+    # LottoBotto commands
+    if p_message == '!win':
+        return dariusfunc.generate()
+    
+    if p_message == '!lastest draw':
+        return dariusfunc.get_latest_draw()
+    
         
         
             
