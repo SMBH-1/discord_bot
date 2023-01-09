@@ -57,4 +57,4 @@ async def chatbot(ctx, *, prompt: str):
 
 
 
-bot.run(DISCORD_TOKEN)
+# bot.run(DISCORD_TOKEN)
