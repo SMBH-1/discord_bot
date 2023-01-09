@@ -2,3 +2,5 @@ jsMethod/
 bot-env/
 .env
 pyMethod/
+.venv
+__pycache__
