@@ -78,5 +78,37 @@ bot.run(token)
     
     
 
+<<<<<<< HEAD
+=======
+        #"logging" chat in console
+        print(f"{username} said: '{user_message}' ({channel})")
+
+        # Determine if response will be in private message or channel it was received in
+        if user_message[0] == '?':
+            user_message = user_message[1:]
+            await send_message(message, user_message, is_private=True)
+        else:
+            await send_message(message, user_message, is_private=False)
+    
+    commands = 'The commands I can perform are:\n!schedule\n!lookup\n!helpbot\n!chatbot\n!win\n!latest draw'
+    
+    # dm commands on request
+    @client.event
+    async def on_message(message):
+        if message.content.startswith('!commands'):
+            await message.author.send(commands)
+    
+    # set message to new users
+    newUserDM = 'Hi, Welcome to the server! Type !commands in the server to receive a list of commands that I can perform!'
+
+    # welcome a new member
+    @client.event
+    async def on_member_join(member):
+        gen_channel = client.get_channel(1057692805704712315)
+        print(member)
+        print('Bot notices ' + member.name + ' joined')
+        await member.send(newUserDM)
+        await gen_channel.send(f'{member.name} has joined! Everyone say hello!')
+>>>>>>> 0ec535af554e4234438853d1b8009bf6d88a0304
     
 #     client.run(my_secret)
