@@ -1,2 +1,4 @@
 jsMethod/
 bot-env/
+.env
+pyMethod/

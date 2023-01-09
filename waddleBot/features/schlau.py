@@ -4,12 +4,14 @@ import psycopg2
 from dotenv import load_dotenv
 from cryptography.fernet import Fernet
 load_dotenv()
+##Bot token
 BOT=os.environ['BOT']
+##a password to a user wihtin postgresql is required to connect to postgresql
 TOKEN=os.environ['TOKEN']
+##a consistent encryption key is required to consistently encrypt and decode database information
 ENCRIPTION_KEY=os.environ['ENCRIPTION_KEY']
-
 encryption_object=Fernet(ENCRIPTION_KEY)
-
+##this conn object connects to database and allows changes
 conn = psycopg2.connect(
     host="localhost",
     database="group_project",
@@ -23,10 +25,11 @@ print("Connection established to: ",data)
 intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
+
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
-
+##this logs every discord message into the database, by encrypting it so it is unable to break postgresql
 @client.event
 async def on_message(message):
     if message.author == client.user:
