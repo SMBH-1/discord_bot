@@ -46,6 +46,9 @@ def handle_response(message) -> str:
     if p_message == '!lastest draw':
         return dariusfunc.get_latest_draw()
     
+    # Server Stats
+    if p_message == '!server':
+        return spencefunc.server(p_message)
         
         
             
