@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def cat_picture():
+    print('CAT')
     cat_key = os.environ['CAT']
     response = requests.get(f'https://api.thecatapi.com/v1/images/search?api_key={cat_key}')
     data = response.json()
@@ -46,6 +47,7 @@ def glad_check(p_message):
         return f'```{char_name.title()}:\n{glad_str}```'
     
 def schedule(p_message):
+    print('schedule')
     events = {}
     # Split message into a list of arguments
     args = p_message.split()
