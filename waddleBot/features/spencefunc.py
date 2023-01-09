@@ -56,5 +56,38 @@ async def chatbot(ctx, *, prompt: str):
     await ctx.send(response)
 
 
+@bot.command()
+async def server(ctx):
+    name = ctx.guild.name
+    description = ctx.guild.description
+
+    owner = ctx.guild.owner
+    id = ctx.guild.id
+    memberCount = ctx.guild.member_count    
+
+    embed = discord.Embed(
+        title = name + "Server Information",
+        description = description,
+        color = discord.Color.blue()
+    )
+    embed.set_thumbnail(url="https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Penguin_%28Oswald_Cobblepot%29.png/220px-Penguin_%28Oswald_Cobblepot%29.png")
+    embed.add_field(
+        name = "Owner", 
+        value = owner, 
+        inline = False
+    )
+    embed.add_field(
+        name = "Server ID", 
+        value = id, 
+        inline = False
+    )
+    embed.add_field(
+        name = "Member Count", 
+        value = memberCount, 
+        inline = False
+    )
+
+    await ctx.send(embed=embed)
+
 
 # bot.run(DISCORD_TOKEN)
