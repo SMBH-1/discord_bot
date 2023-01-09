@@ -23,11 +23,43 @@ def run_discord_bot():
     async def on_ready():
         print(f'{client.user} is now running!')
     
-    
+    async def send_message(message, user_message, is_private):
+    # Handle response and send in PM or channel
+      try:
+          response = responses.handle_response(user_message)
+          if response:
+            await message.author.send(response) if is_private else await message.channel.send(response)
+      except Exception as e: 
+          print(e)
+
+
     # Message classification
     @client.event
     async def on_message(message):
         # Avoid infinite loops
         if message.author == client.user:
             return 
+
+        # Grab author, content, channel
+        username = str(message.author)
+        user_message = str(message.content)
+        channel = str(message.channel)
+        print(f"{username} said: '{user_message}' ({channel})")
+
+        # Determine if response will be in private message or channel it was received in
+        if user_message[0] == '?':
+            user_message = user_message[1:]
+            await send_message(message, user_message, is_private=True)
+        else:
+            await send_message(message, user_message, is_private=False)
+
+
+    newUserDM = 'Hi, Welcome to the server! Type !commands in the server to receive a list of commands that I can perform!'
+    @client.event
+    async def on_member_join(member):
+        gen_channel = client.get_channel(1057692805704712315)
+        print(member)
+        print('Bot notices ' + member.name + ' joined')
+        await member.send(newUserDM)
+        await gen_channel.send(f'{member.name} has joined! Everyone say hello!')
     client.run(my_secret)
