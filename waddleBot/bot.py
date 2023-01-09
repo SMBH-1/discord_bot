@@ -48,7 +48,15 @@ def run_discord_bot():
             await send_message(message, user_message, is_private=True)
         else:
             await send_message(message, user_message, is_private=False)
-     
+    
+    commands = 'The commands I can perform are:\n!schedule\n!lookup\n!helpbot\n!chatbot\n!win\n!latest draw'
+    
+    # dm commands on request
+    @client.event
+    async def on_message(message):
+        if message.content.startswith('!commands'):
+            await message.author.send(commands)
+    
     # set message to new users
     newUserDM = 'Hi, Welcome to the server! Type !commands in the server to receive a list of commands that I can perform!'
 
