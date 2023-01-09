@@ -7,6 +7,7 @@ load_dotenv()
 def handle_response(message) -> str:
     # Standardize input
     p_message = message.lower()
+    print('here: ', p_message.split(' '))
 
     # Help function 
     #TODO: add all possible commands with brief description (maybe some formatting as well?)
@@ -49,7 +50,6 @@ def handle_response(message) -> str:
     # Server Stats
     if p_message == '!server':
         return spencefunc.server(p_message)
-        
         
             
             
