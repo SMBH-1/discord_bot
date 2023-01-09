@@ -30,3 +30,4 @@ def run_discord_bot():
         # Avoid infinite loops
         if message.author == client.user:
             return 
+    client.run(my_secret)
