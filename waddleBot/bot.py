@@ -90,7 +90,7 @@ bot.run(token)
         else:
             await send_message(message, user_message, is_private=False)
     
-    commands = 'The commands I can perform are:\n!schedule\n!lookup\n!helpbot\n!chatbot\n!win\n!latest draw'
+    commands = 'The commands I can perform are:\n!schedule\n!lookup\n!helpbot\n!chatbot\n!win\n!latest draw\n\nThe music bot commands are:\n/play <keywords>: finds the song on youtube and plays it in your current channel, will resume playing the current song if it was paused\n/queue: displays the current music queue\n/skip: skips the current song being played\n/clear: stops the music and clears the queue\n/leave: disconnects the bot from the voice channel\n/pause: pauses the current song, or resumes play if the song was paused\n/resume: resumes playing the current song'
     
     # dm commands on request
     @client.event
