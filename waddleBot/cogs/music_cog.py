@@ -116,7 +116,7 @@ class music_cog(commands.Cog):
 
   @app_commands.command(name='queue', description='Displays all the songs currently in the queue.')
   async def queue(self, interaction: discord.Interaction):
-    if self.music_queue == []:
+    if self.music_queue == [] and self.current_song == None:
       await interaction.response.send_message('There is no music in the queue.')
     else:
       queue_string = ''

@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 import responses
 
-from cogs import music_cog as music_cog
+# from cogs import music_cog as music_cog
 
 load_dotenv()
 async def send_message(message, user_message, is_private):
@@ -31,7 +31,7 @@ def run_discord_bot():
             if filename.endswith('.py'):
                 print(filename)
                 await bot.load_extension(f'cogs.{filename[:-3]}')
-        await bot.tree.sync()
+        await bot.tree.sync(guild=discord.Object(id=1057692804865855652))
         print(f'{bot.user} is now running!')
     
     async def send_message(message, user_message, is_private):
