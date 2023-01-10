@@ -2,8 +2,13 @@ import discord
 from discord import app_commands
 from discord.ext import commands
 import math
-
 from youtube_dl import YoutubeDL
+from features.sevfunc import intialize_server, add_to_playlist, play_playlist
+
+
+
+
+
 
 class music_cog(commands.Cog):
   def __init__(self, bot: commands.Bot):
@@ -15,10 +20,11 @@ class music_cog(commands.Cog):
     self.current_song = None
 
     self.music_queue = []
-    self.YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
+    self.YDL_OPTIONS = {'format': 'bestaudio'}
     self.FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
 
     self.vc = None
+    intialize_server()
 
   def search_yt(self, item):
     with YoutubeDL(self.YDL_OPTIONS) as ydl:
@@ -81,6 +87,7 @@ class music_cog(commands.Cog):
         await interaction.response.send_message('Could not download the song. Incorrect format, try a different keyword.')
       else:
         await interaction.response.send_message('Song added to the queue.')
+        add_to_playlist(song['source'])
         self.music_queue.append([song, voice_channel])
 
         if self.is_playing == False:
@@ -151,6 +158,27 @@ class music_cog(commands.Cog):
     self.is_paused = False
     await self.vc.disconnect()
     await interaction.response.send_message('GOODBYE CRUEL WORLD.')
+  
+  @app_commands.command(name='playlist', description='List your playlist name and play the contents on shuffle.')
+  async def playlist(self, interaction: discord.Interaction, playlist:str):
+    url_list=play_playlist(playlist, interaction.user)
+    print(url_list)
+    if interaction.user.voice != None:
+        voice_channel = interaction.user.voice.channel
+    else:
+        voice_channel = None
+    for url in url_list:
+      if voice_channel is None:
+          await interaction.response.send_message('Connect to a voice channel!')
+      else:
+          song = self.search_yt(url)
+          add_to_playlist(song['source'])
+          self.music_queue.append([song, voice_channel])
+
+    if self.is_playing == False:
+            await self.play_music(interaction)
+    
+
 
 async def setup(bot: commands.Bot):
     await bot.add_cog(

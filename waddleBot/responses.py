@@ -1,10 +1,10 @@
 import random 
-from features import zackfunc, spencefunc, dariusfunc
+from features import zackfunc, spencefunc, dariusfunc, sevfunc
 from dotenv import load_dotenv
-
+import os
 load_dotenv()
 
-def handle_response(message) -> str:
+def handle_response(message, author) -> str:
     # Standardize input
     p_message = message.lower()
 
@@ -49,6 +49,26 @@ def handle_response(message) -> str:
     # Server Stats
     if p_message == '!server':
         return spencefunc.server(p_message)
+
+    #playlist functionality
+    if '!create_playlist' in p_message:
+        return sevfunc.create_playlist(p_message, author)
+
+    if '!list_playlists' in p_message:
+        return sevfunc.list_playlists(author)
+
+    if '!list_songs' in p_message:
+        return sevfunc.list_song(p_message, author)
+
+    if '!add' in p_message:
+        return sevfunc.add(p_message, author)
+    
+    if '!delete_song' in p_message:
+        return sevfunc.delete_song(p_message, author)\
+
+    if '!delete_playlist' in p_message:
+        return sevfunc.delete_playlist(p_message, author)
+    
         
             
             
