@@ -118,5 +118,5 @@ class Dungeon_Cog(commands.Cog):
             except:
                 await ctx.channel.send(f'{search_term} is not a valid command.')
 
-    async def setup(bot: commands.Bot):
-        await bot.add_cog(Dungeon_Cog(bot), guilds=[discord.Object(id=1057755148862099536), discord.Object(id=1057692804865855652)])
+async def setup(bot: commands.Bot):
+    await bot.add_cog(Dungeon_Cog(bot), guilds=[discord.Object(id=1057755148862099536), discord.Object(id=1057692804865855652)])
