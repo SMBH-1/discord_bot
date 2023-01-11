@@ -2,7 +2,10 @@ import React from 'react'
 
 function Support() {
   return (
-    <div>Support</div>
+    <div id={'support'}>
+      <h1>Docs</h1>
+    </div>
+
   )
 }
 

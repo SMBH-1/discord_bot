@@ -7,4 +7,29 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
+
+.icon {
+  background: url(https://cdn.discordapp.com/attachments/1057694003123978250/1060325822684200970/Group-83.png) ; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+/* .side-img {
+  background: url(https://cdn.midjourney.com/666e2374-ce79-4390-bff0-4c0c9fa76ea7/grid_0.png) ; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+html { 
+  background: url(https://cdn.midjourney.com/666e2374-ce79-4390-bff0-4c0c9fa76ea7/grid_0.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} */

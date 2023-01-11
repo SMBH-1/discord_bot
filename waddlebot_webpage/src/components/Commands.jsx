@@ -4,11 +4,11 @@ import { Container, Col, Row } from "react-bootstrap";
 
 function Commands() {
   return (
-    <Container className="hero bg-dark">
+    <Container id={'commands'} className="hero bg-dark">
       <Col>
         <Row>
-          <h1 className="hdg">
-            maybe some sample commands w a link to commands/docs page
+          <h1 className="hdg" style={{paddingTop: '20px'}}>
+            Simple, useful commands
           </h1>
         </Row>
 
@@ -44,7 +44,37 @@ function Commands() {
               description="look up a WoW character to determine their highest arena achievement"
             />
             <CommandCard 
-              
+              name={"/help"}
+              description="display all available music bot commands"
+            />
+            <CommandCard 
+              name={"/play"}
+              description="search for a song on YouTube and play it in your current channel"
+              args="<keywords>"
+            />
+            <CommandCard 
+              name={"/queue"}
+              description="display the current music queue"
+            />
+            <CommandCard 
+              name={"/skip"}
+              description="skip the current song"
+            />
+            <CommandCard 
+              name={"/clear"}
+              description="stop music and clear the queue"
+            />
+            <CommandCard 
+              name={"/leave"}
+              description="disconnect the music bot from the voice channel"
+            />
+            <CommandCard 
+              name={"/pause"}
+              description="pause the current song"
+            />
+            <CommandCard 
+              name={"/resume"}
+              description="resume the current song"
             />
           </Col>
         </Row>

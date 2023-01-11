@@ -3,13 +3,14 @@ import { Container, Col, Row } from "react-bootstrap";
 
 function Home() {
   return (
-    <div className="hero bg-dark">
+    <div id={'home'} className="hero icon text-dark">
       <Row>
-        <Col>
-          <h1 className="hdg"> Make your Discord server "smarter" </h1>
+        <Col style={{paddingRight: '200px'}}>
+          <h1 className="hdg"> WaddleBot </h1>
+          <h5 className="hdg"> making your server as smart as... a penguin? </h5>
         </Col>
         <Col>
-          <h6 className="hdg">some cartoon penguin or some shit</h6>
+          
         </Col>
       </Row>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 function CommandCard({name, description, args, cooldown}) {
   return (
-    <div className="card border-dark mb-3" style={{ width: "20rem" }}>
+    <div className="card border-dark mb-3" style={{ width: "20rem", boxShadow: 'rgba(0, 0, 0, 0.15) 0px 3px 3px 0px' }}>
       <div className="card-header">{name}</div>
       <div className="card-body">
         <h5 className="card-title">Description</h5>
