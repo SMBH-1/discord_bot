@@ -1,5 +1,5 @@
 import random 
-from features import zackfunc, spencefunc, dariusfunc, sevfunc
+from features import zackfunc, spencefunc, dariusfunc, sevfunc, sidfunc
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -13,8 +13,8 @@ def handle_response(message, author) -> str:
     if p_message == 'help':
         return "```Try the following commands:\nhello - receive a friendly greeting from WaddleBot\nroll - feeling lucky? roll the dice\nmeow - generate a random kitty pic\n!lookup (characterName-realmName) - check WoW character for Gladiator achievement```"
 
-    if p_message == 'hello':
-        return 'fuck off'
+    # if p_message == 'hello':
+    #     return 'fuck off'
     
     if p_message == 'roll':
         return str(random.randint(1,6))
@@ -69,9 +69,11 @@ def handle_response(message, author) -> str:
     if '!delete_playlist' in p_message:
         return sevfunc.delete_playlist(p_message, author)
     
-        
-            
-            
-
-
+    # Generates DALL-E Image
+    if p_message.content.startswith('!waddle draw'):
+        return sidfunc.generate_dall_e_img(p_message)        
+    
+    #Generates gif from GIPHY
+    if p_message.content.startswith('!gif'):
+        return sidfunc.gif_finder(p_message)
     
