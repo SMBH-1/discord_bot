@@ -58,7 +58,7 @@ def handle_response(message, author) -> str:
         return kevfunc.initiative(p_message)
 
     if p_message.startswith('!run_init'):
-        return kevfunc.initiative()
+        return kevfunc.run_initiative()
 
     if p_message.startswith('!condition'):
         return kevfunc.condition(p_message)
