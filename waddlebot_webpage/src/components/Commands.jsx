@@ -4,16 +4,25 @@ import { Container, Col, Row } from "react-bootstrap";
 
 function Commands() {
   return (
-    <Container id={'commands'} className="hero bg-dark">
+    <Container id={"commands"} className="hero bg-dark bt-3">
       <Col>
         <Row>
-          <h1 className="hdg" style={{paddingTop: '20px'}}>
+          <h1 className="hdg pb-3" >
             Simple, useful commands
           </h1>
         </Row>
 
         <Row>
-          <h3> Type of Command </h3>
+          <Col>
+            <h3> Music </h3>
+          </Col>
+          <Col>
+            {" "}
+            <h3>Utility</h3>
+          </Col>
+          <Col>
+            <h3> General</h3>
+          </Col>
         </Row>
 
         {/* Add your command cards below. 
@@ -26,53 +35,33 @@ function Commands() {
 
        */}
         <Row>
-          <Col s={6}>
+          <Col>
             <CommandCard
-              name={"testcommand"}
-              description="description of command goes here"
-              args="arguments"
-              cooldown="10s"
-            />
-          </Col>
-          <Col s={6}>
-            <CommandCard
-              name={"help"}
-              description="show a list of all available commands"
-            />
-            <CommandCard
-              name={"!lookup"}
-              description="look up a WoW character to determine their highest arena achievement"
-            />
-            <CommandCard 
-              name={"/help"}
-              description="display all available music bot commands"
-            />
-            <CommandCard 
               name={"/play"}
               description="search for a song on YouTube and play it in your current channel"
               args="<keywords>"
             />
-            <CommandCard 
-              name={"/queue"}
-              description="display the current music queue"
-            />
-            <CommandCard 
-              name={"/skip"}
-              description="skip the current song"
-            />
-            <CommandCard 
-              name={"/clear"}
-              description="stop music and clear the queue"
-            />
-            <CommandCard 
+            <CommandCard
               name={"/leave"}
               description="disconnect the music bot from the voice channel"
             />
-            <CommandCard 
-              name={"/pause"}
-              description="pause the current song"
+          </Col>
+          <Col>
+            <CommandCard
+              name={"!chatbot"}
+              description="have a conversation with ChatGPT"
             />
-            <CommandCard 
+            <CommandCard
+              name={"!commands"}
+              description="view a list of all available commands"
+            />
+            <CommandCard
+              name={"!server"}
+              description="display basic server statistics"
+            />
+          </Col>
+          <Col>
+            <CommandCard
               name={"/resume"}
               description="resume the current song"
             />

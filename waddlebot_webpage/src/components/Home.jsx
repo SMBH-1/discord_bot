@@ -3,13 +3,13 @@ import { Container, Col, Row } from "react-bootstrap";
 
 function Home() {
   return (
-    <div id={'home'} className="hero icon text-dark">
+    <div id={'home'} className="hero icon text-light">
       <Row>
-        <Col style={{paddingRight: '200px'}}>
+        <Col xs={8} style={{paddingRight: '200px'}}>
           <h1 className="hdg"> WaddleBot </h1>
-          <h5 className="hdg"> making your server as smart as... a penguin? </h5>
+          <h6 > making your server as smart as... <em>a penguin?</em></h6>
         </Col>
-        <Col>
+        <Col >
           
         </Col>
       </Row>
