@@ -21,11 +21,11 @@ intents = discord.Intents.all()
 # bot = commands.Bot(command_prefix='!', intents=intents) 
 
 
-def generate_dall_e_img(ctx, *, prompt: str):
+def generate_dall_e_img(prompt):
   openai.api_key = os.environ['OPEN_AI_DALLE']
   openai.Model.list() #Validates whether authentication has been completed
   response = openai.Image.create(
-    prompt = prompt.content[21:],
+    prompt = prompt[21:],
     n = 1,
     size = '512x512',
   )
@@ -34,7 +34,7 @@ def generate_dall_e_img(ctx, *, prompt: str):
 
 
 
-def gif_finder(ctx, *, q='gif'):
+def gif_finder(q):
   giphy_api_key = os.environ['GIPHY_KEY']
   api_use = giphy_client.DefaultAPI()
 

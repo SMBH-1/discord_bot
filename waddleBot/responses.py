@@ -14,7 +14,7 @@ def handle_response(message, author) -> str:
         return "```Try the following commands:\nhello - receive a friendly greeting from WaddleBot\nroll - feeling lucky? roll the dice\nmeow - generate a random kitty pic\n!lookup (characterName-realmName) - check WoW character for Gladiator achievement```"
 
     if p_message == 'hello':
-        return 'Screw you'
+        return "I don’t quite understand your greeting, I’m still in development"
     
     if p_message == 'roll':
         return str(random.randint(1,6))
@@ -90,7 +90,7 @@ def handle_response(message, author) -> str:
         return sevfunc.delete_playlist(p_message, author)
     
     # Generates DALL-E Image
-    if p_message.startswith('!waddle draw'):
+    if p_message.startswith('!waddle_draw'):
         return sidfunc.generate_dall_e_img(p_message)        
     
     #Generates gif from GIPHY
