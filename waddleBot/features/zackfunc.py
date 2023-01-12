@@ -36,14 +36,15 @@ def glad_check(p_message):
     for item in achievements:
 
         if 'Gladiator' in item['achievement']['name'] and "'s" not in item['achievement']['name']:
-            print('list', item['achievement']['name'])
+            # print('list', item['achievement']['name'])
             glad = item['achievement']['name']
             glad_str += f'{glad}\n'
     if len(glad_str) < 1:
         # print('empty glad list')
         return f'`{char_name} is boosted.`'
     else:
-        return f'```{char_name.title()}'s PvP Achievements:\n{glad_str}```'
+        line=f"{char_name.title()}'s PvP Achievements\n{glad_str}"
+        return f"```{line}```"
     
 def schedule(p_message):
     # print('schedule')

@@ -37,7 +37,7 @@ async def helpbot(ctx):
         value = 'Engage the bot',
         inline = False
     )
-    await ctx.send(embed=embed)
+    return embed
 
 
 
