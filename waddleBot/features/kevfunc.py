@@ -25,6 +25,7 @@ global initiative_pool
 initiative_pool = {}
 
 def initiative(p_message):
+    # p_message = p_message[6:]
     work_list = p_message.split(' ')
     crit_message = ''
     character_id = work_list[1]
@@ -45,6 +46,7 @@ def initiative(p_message):
 def run_initiative():
     global initiative_pool
     work_list = initiative_pool
+    print(initiative_pool)
     response = dict(sorted(work_list.item(), key=lambda item:item[1], reverse=True))
     initiative_pool = {}
     return f'{response}'
