@@ -44,7 +44,7 @@ def glad_check(p_message):
         print('empty glad list')
         return f'`{char_name} is boosted.`'
     else:
-        return f'```{char_name.title()}:\n{glad_str}```'
+        return f'```{char_name.title()}'s PvP Achievements:\n{glad_str}```'
     
 def schedule(p_message):
     print('schedule')
