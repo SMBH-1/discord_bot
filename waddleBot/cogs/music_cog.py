@@ -159,7 +159,7 @@ class music_cog(commands.Cog):
     await self.vc.disconnect()
     await interaction.response.send_message('GOODBYE CRUEL WORLD.')
   
-  @app_commands.command(name='playlist', description='List your playlist name and play the contents on shuffle.')
+  @app_commands.command(name='playlist', description='List your playlist name and play the contents on shuffle.', )
   async def playlist(self, interaction: discord.Interaction, playlist:str):
     url_list=play_playlist(playlist, interaction.user)
     print(url_list)
@@ -168,15 +168,21 @@ class music_cog(commands.Cog):
     else:
         voice_channel = None
     for url in url_list:
-      if voice_channel is None:
-          await interaction.response.send_message('Connect to a voice channel!')
-      else:
-          song = self.search_yt(url)
-          add_to_playlist(song['source'])
-          self.music_queue.append([song, voice_channel])
+      try:
+        if voice_channel is None:
+          pass
+        else:
+            song = self.search_yt(url)
+            add_to_playlist(song['source'])
+            self.music_queue.append([song, voice_channel])
+      except:
+        pass
 
     if self.is_playing == False:
             await self.play_music(interaction)
+    else:
+        await interaction.response.send_message("playing...")
+    # await interaction.response.send_message("playing...")
     
 
 
