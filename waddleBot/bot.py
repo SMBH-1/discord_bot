@@ -7,14 +7,7 @@ import responses
 # from cogs import music_cog as music_cog
 
 load_dotenv()
-async def send_message(message, user_message, is_private):
-    # Handle response and send in PM or channel
-    try:
-        response = responses.handle_response(user_message)
-        if response:
-            await message.author.send(response) if is_private else await message.channel.send(response)
-    except Exception as e: 
-        print(e)
+
 
 def run_discord_bot():
     # Bot token import from .env, fix weird intents issue
@@ -29,15 +22,16 @@ def run_discord_bot():
     async def on_ready():
         for filename in os.listdir('./cogs'):
             if filename.endswith('.py'):
-                print(filename)
+                # print(filename)
                 await bot.load_extension(f'cogs.{filename[:-3]}')
         await bot.tree.sync(guild=discord.Object(id=1057692804865855652))
         print(f'{bot.user} is now running!')
     
+
     async def send_message(message, user_message, is_private):
     # Handle response and send in PM or channel
       try:
-          response = responses.handle_response(user_message)
+          response = responses.handle_response(user_message, message.author)
           if response:
             await message.author.send(response) if is_private else await message.channel.send(response)
       except Exception as e: 

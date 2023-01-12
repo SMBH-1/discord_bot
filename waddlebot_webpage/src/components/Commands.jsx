@@ -4,16 +4,25 @@ import { Container, Col, Row } from "react-bootstrap";
 
 function Commands() {
   return (
-    <Container className="hero bg-dark">
+    <Container id={"commands"} className="hero bg-dark bt-3">
       <Col>
         <Row>
-          <h1 className="hdg">
-            maybe some sample commands w a link to commands/docs page
+          <h1 className="hdg pb-3" >
+            Simple, useful commands
           </h1>
         </Row>
 
         <Row>
-          <h3> Type of Command </h3>
+          <Col>
+            <h3> Music </h3>
+          </Col>
+          <Col>
+            {" "}
+            <h3>Utility</h3>
+          </Col>
+          <Col>
+            <h3> General</h3>
+          </Col>
         </Row>
 
         {/* Add your command cards below. 
@@ -26,25 +35,35 @@ function Commands() {
 
        */}
         <Row>
-          <Col s={6}>
+          <Col>
             <CommandCard
-              name={"testcommand"}
-              description="description of command goes here"
-              args="arguments"
-              cooldown="10s"
+              name={"/play"}
+              description="search for a song on YouTube and play it in your current channel"
+              args="<keywords>"
+            />
+            <CommandCard
+              name={"/leave"}
+              description="disconnect the music bot from the voice channel"
             />
           </Col>
-          <Col s={6}>
+          <Col>
             <CommandCard
-              name={"help"}
-              description="show a list of all available commands"
+              name={"!chatbot"}
+              description="have a conversation with ChatGPT"
             />
             <CommandCard
-              name={"!lookup"}
-              description="look up a WoW character to determine their highest arena achievement"
+              name={"!commands"}
+              description="view a list of all available commands"
             />
-            <CommandCard 
-              
+            <CommandCard
+              name={"!server"}
+              description="display basic server statistics"
+            />
+          </Col>
+          <Col>
+            <CommandCard
+              name={"/resume"}
+              description="resume the current song"
             />
           </Col>
         </Row>
