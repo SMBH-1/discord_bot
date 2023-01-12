@@ -35,7 +35,7 @@ def handle_response(message, author) -> str:
     if p_message == '!helpbot':
         return spencefunc.helpbot(p_message)
 
-    if p_message == '!chatbot':
+    if p_message.startswith('!chatbot'):
         return spencefunc.chatbot(p_message)
     
 
