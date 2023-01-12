@@ -42,7 +42,7 @@ def glad_check(p_message):
             glad_str += f'{glad}\n'
     if len(glad_str) < 1:
         print('empty glad list')
-        return f'`{char_name} is boosted dogshit`'
+        return f'`{char_name} is boosted.`'
     else:
         return f'```{char_name.title()}:\n{glad_str}```'
     
