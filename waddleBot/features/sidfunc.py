@@ -17,11 +17,11 @@ load_dotenv()
 
   #   #The following will allow arson_bot to call OpenAI API to generate DALL-E image
 intents = discord.Intents.all()
-client = discord.Client(intents=intents)
-bot = commands.Bot(command_prefix='!', intents=intents) 
+# client = discord.Client(intents=intents)
+# bot = commands.Bot(command_prefix='!', intents=intents) 
 
-@bot.command()
-async def generate_dall_e_img(ctx, *, prompt: str):
+
+def generate_dall_e_img(ctx, *, prompt: str):
   openai.api_key = os.environ['OPEN_AI_DALLE']
   openai.Model.list() #Validates whether authentication has been completed
   response = openai.Image.create(
@@ -30,11 +30,11 @@ async def generate_dall_e_img(ctx, *, prompt: str):
     size = '512x512',
   )
   image_url = response['data'][0]['url']
-  await ctx.send(image_url)
+  return image_url
 
 
-@bot.command()
-async def gif_finder(ctx, *, q='gif'):
+
+def gif_finder(ctx, *, q='gif'):
   giphy_api_key = os.environ['GIPHY_KEY']
   api_use = giphy_client.DefaultAPI()
 
@@ -44,10 +44,9 @@ async def gif_finder(ctx, *, q='gif'):
     gif = random.choice(response_list)
 
     gif_embed = discord.Embed(title=q)
-    gif_embed.set_image(url=f"https://media.giphy.com/media/{gif.id}/giphy.gif")
-
-    await ctx.channel.send(embed = gif_embed)
-  
+    embed = gif_embed.set_image(url=f"https://media.giphy.com/media/{gif.id}/giphy.gif")
+    return embed
+    
   except ApiException as r:
     print("Exception from API")
 
