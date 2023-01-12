@@ -13,8 +13,8 @@ def handle_response(message, author) -> str:
     if p_message == 'help':
         return "```Try the following commands:\nhello - receive a friendly greeting from WaddleBot\nroll - feeling lucky? roll the dice\nmeow - generate a random kitty pic\n!lookup (characterName-realmName) - check WoW character for Gladiator achievement```"
 
-    # if p_message == 'hello':
-    #     return 'fuck off'
+    if p_message == 'hello':
+        return 'Screw you'
     
     if p_message == 'roll':
         return str(random.randint(1,6))
@@ -22,7 +22,7 @@ def handle_response(message, author) -> str:
     
 
     # grab random cat picture using thecatapi
-    if p_message == 'meow':
+    if p_message == '!meow':
         return zackfunc.cat_picture()
     
     if p_message.startswith('!schedule'):
@@ -90,10 +90,10 @@ def handle_response(message, author) -> str:
         return sevfunc.delete_playlist(p_message, author)
     
     # Generates DALL-E Image
-    if p_message.content.startswith('!waddle draw'):
+    if p_message.startswith('!waddle draw'):
         return sidfunc.generate_dall_e_img(p_message)        
     
     #Generates gif from GIPHY
-    if p_message.content.startswith('!gif'):
+    if p_message.startswith('!gif'):
         return sidfunc.gif_finder(p_message)
     
