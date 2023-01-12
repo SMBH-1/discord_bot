@@ -1,9 +1,5 @@
 import random 
-<<<<<<< HEAD
-from features import zackfunc, spencefunc, dariusfunc, kevfunc
-=======
-from features import zackfunc, spencefunc, dariusfunc, sevfunc, sidfunc
->>>>>>> 855c9e961580640f6b1f1b77c207784ed17b2c22
+from features import zackfunc, spencefunc, dariusfunc, sevfunc, sidfunc, kevfunc
 from dotenv import load_dotenv
 import os
 load_dotenv()
@@ -53,7 +49,6 @@ def handle_response(message, author) -> str:
     # Server Stats
     if p_message == '!server':
         return spencefunc.server(p_message)
-<<<<<<< HEAD
         
     # DnD Commands
     if p_message.startswith('!roll'):
@@ -68,8 +63,6 @@ def handle_response(message, author) -> str:
     if p_message.startswith('!condition'):
         return kevfunc.condition(p_message)
             
-=======
->>>>>>> 855c9e961580640f6b1f1b77c207784ed17b2c22
 
     #playlist functionality
     if '!create_playlist' in p_message:
