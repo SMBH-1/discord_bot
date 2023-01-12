@@ -174,16 +174,13 @@ class music_cog(commands.Cog):
           pass
         else:
             song = self.search_yt(url)
-            # add_to_playlist(song['source'])
             self.music_queue.append([song, voice_channel])
+            await interaction.response.send_message("playing...")
       except:
         pass
 
     if self.is_playing == False:
             await self.play_music(interaction)
-    else:
-        pass
-    await interaction.response.send_message("playing...")
     
     
 
