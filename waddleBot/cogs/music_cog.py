@@ -156,6 +156,7 @@ class music_cog(commands.Cog):
   async def leave(self, interaction: discord.Interaction):
     self.is_playing = False
     self.is_paused = False
+    self.music_queue = []
     await self.vc.disconnect()
     await interaction.response.send_message('GOODBYE CRUEL WORLD.')
   
@@ -173,7 +174,7 @@ class music_cog(commands.Cog):
           pass
         else:
             song = self.search_yt(url)
-            add_to_playlist(song['source'])
+            # add_to_playlist(song['source'])
             self.music_queue.append([song, voice_channel])
       except:
         pass
@@ -181,8 +182,8 @@ class music_cog(commands.Cog):
     if self.is_playing == False:
             await self.play_music(interaction)
     else:
-        await interaction.response.send_message("playing...")
-    # await interaction.response.send_message("playing...")
+        pass
+    await interaction.response.send_message("playing...")
     
     
 
