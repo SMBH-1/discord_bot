@@ -51,6 +51,9 @@ def handle_response(message, author) -> str:
         return spencefunc.server(p_message)
         
     # DnD Commands
+    if p_message.startswith('!yo'):
+        return kevfunc.test_command()
+
     if p_message.startswith('!roll'):
         return kevfunc.roll(p_message)
     
@@ -58,11 +61,14 @@ def handle_response(message, author) -> str:
         return kevfunc.initiative(p_message)
 
     if p_message.startswith('!run_init'):
-        return kevfunc.initiative()
+        return kevfunc.run_initiative()
 
     if p_message.startswith('!condition'):
         return kevfunc.condition(p_message)
-            
+
+    if p_message.startswith('!clear_init'):
+        return kevfunc.clear_init()
+       
 
     #playlist functionality
     if '!create_playlist' in p_message:

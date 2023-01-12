@@ -4,7 +4,7 @@ from discord.ext import commands
 import requests
 import json
 
-def test_command(p_message):
+def test_command():
     return ':stuck_out_tongue_winking_eye:'
 
 def roll(p_message):
@@ -46,7 +46,6 @@ def run_initiative():
     global initiative_pool
     work_list = initiative_pool
     response = dict(sorted(work_list.item(), key=lambda item:item[1], reverse=True))
-    initiative_pool = {}
     return f'{response}'
 
 def condition(p_message):
@@ -65,3 +64,8 @@ def condition(p_message):
             return f'{name} \n {reply}'
         except:
             return f'{search_term} not a valid search term, try `!condition list` for a list of valid terms'
+
+def clear_init():
+    global initiative_pool
+    initiative_pool = {}
+    return 'The Initiative Pool has been reset.'
