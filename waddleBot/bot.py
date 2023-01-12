@@ -1,8 +1,11 @@
 import discord
-from discord.ext import commands
+from discord.ext import commands, tasks
 import os
 from dotenv import load_dotenv
 import responses
+import requests
+import re
+import json
 
 # from cogs import music_cog as music_cog
 
@@ -74,6 +77,64 @@ def run_discord_bot():
         print('Bot notices ' + member.name + ' joined')
         await member.send(newUserDM)
         await gen_channel.send(f'{member.name} has joined! Everyone say hello!')
+    
+    # For youtube notifications
+    @tasks.loop(seconds=30)
+    async def check_for_videos():
+        with open("youtube_data.json", "r") as f:
+            data = json.load(f)
+        
+        print("Checking for YT uploads now ...")
+        
+        #checking for all the channels
+        for youtube_channel in data:
+            channel = f"https://youtube.com/channel/{youtube_channel}"
+            html = requests.get(channel+"/videos").text
+
+            #getting the latest video's url
+            try:
+                latest_video_url = f"https://youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
+            except:
+                continue
+            
+            # Checking if url in json file is the same as latest video url
+            if not str(data[youtube_channel]["latest_video_url"]) == latest_video_url:
+                data[str(youtube_channel)]["latest_video_url"] = latest_video_url
+
+                with open("youtube_data.json", "w") as f:
+                    json.dump(data, f)
+                
+                # Getting the channel to send the message in
+                discord_channel_id = data[str(youtube_channel)]["notifying_discord_channel"]
+                discord_channel = bot.get_channel(int(discord_channel_id))
+
+                # Sending the message
+                # Mention whatever role  
+                msg = f"@everyone {data[str(youtube_channel)]['channel_name']} just uploaded a video to YouTube. Check it out: {latest_video_url}"
+
+                await discord_channel.send(msg)
+        # Command to add more youtube accounts to watch in the json file
+
+    @bot.command()
+    async def youtube_notification_data(ctx, channel_id: str, *, channel_name: str):
+        with open("youtube_data.json", "r") as f:
+            data = json.load(f)
+        
+        data[str(channel_id)] = {}
+        data[str(channel_id)]["channel_name"] = channel_name
+        data[str(channel_id)]["latest_video_url"] = "none"
+
+        data[str(channel_id)]["notifying_discord_channel"] = "none"
+
+        with open("youtube_data.json", "w") as f:
+            data = json.dump(data, f)
+        
+        await ctx.send("Added account data!")
+
+    @bot.command()
+    async def start_notifying(ctx):
+        check_for_videos.start()
+        await ctx.send("Now Notifying")
     
     
     
