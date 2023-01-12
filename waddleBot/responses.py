@@ -43,7 +43,7 @@ def handle_response(message, author) -> str:
     if p_message == '!win':
         return dariusfunc.generate()
     
-    if p_message == '!lastest draw':
+    if p_message == '!latest draw':
         return dariusfunc.get_latest_draw()
     
     # Server Stats
