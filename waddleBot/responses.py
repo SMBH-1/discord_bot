@@ -1,5 +1,5 @@
 import random 
-from features import zackfunc, spencefunc, dariusfunc, kevfunc
+from features import zackfunc, spencefunc, dariusfunc, sevfunc, sidfunc, kevfunc
 from dotenv import load_dotenv
 import os
 load_dotenv()
