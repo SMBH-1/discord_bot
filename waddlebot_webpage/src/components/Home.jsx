@@ -5,9 +5,10 @@ function Home() {
   return (
     <div id={'home'} className="hero icon text-light">
       <Row>
-        <Col xs={8} style={{paddingRight: '200px'}}>
-          <h1 className="hdg"> WaddleBot </h1>
-          <h6 > making your server as smart as... <em>a penguin?</em></h6>
+        <Col xs={9} style={{paddingRight: '200px'}}>
+        <h6 > <em>keep all of your penguins on the iceberg with...</em></h6>
+          <h1 className="title"> Waddle<span className="text-dark">Bot</span> </h1>
+          
         </Col>
         <Col >
           
