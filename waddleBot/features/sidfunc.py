@@ -35,6 +35,7 @@ def generate_dall_e_img(prompt):
 
 
 def gif_finder(q):
+  q=q[5:]
   giphy_api_key = os.environ['GIPHY_KEY']
   api_use = giphy_client.DefaultAPI()
 
