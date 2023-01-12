@@ -8,14 +8,7 @@ class help_cog(commands.Cog):
     
     self.help_message = """
     ```
-    /help: displays all the available commands
-    /play <keywords>: finds the song on youtube and plays it in your current channel, will resume playing the current song if it was paused
-    /queue: displays the current music queue
-    /skip: skips the current song being played
-    /clear: stops the music and clears the queue
-    /leave: disconnects the bot from the voice channel
-    /pause: pauses the current song, or resumes play if the song was paused
-    /resume: resumes playing the current song
+    General\n\n!win: generates a random lottery number based on data collected from all MegaMillion's winning numbers\n!latest draw: returns the last drawn winning numbers\n!help: view all available commands\n!hello: receive a wonderful greeting\n!meow: generate a random cat picture\n!lookup {character name}-{server}: check WoW profile for Gladiator achievement\n\nChatBot\n\n!chatbot: engage the bot\n!helpbot: list all commands for chatbot\n!server: display server statistics\n\nMusic\n\n/play: searches YouTube with input search terms, puts song in queue\n/queue: displays currently playing song and songs in queue\n/pause: pauses current song in queue\n/resume: resume playing current song from queue\n/skip: skips current song\n/clear: clears current queue\n/leave: kicks bot from current voice channel\n/playlist: play a playlist from youtube\n!create_playlist: create a playlist associated with your account\n!list_playlists: list all playlists associated with your account\n!list_songs {playlist name}: list all songs within a playlist\n!add {youtubeURL} to {playlist name}: add a song to a playlist\n!delete_song {youtubeURL from {playlist name}}: delete a song from your playlist\n!delete_playlist {playlist name}: delete an entire playlist\n\nDungeons & Dragons\n\n!roll xdy: roll x number of y value die\n!init -mod/+mod (ie. +3 or -1): roll initiative\n!dm_init <NPC:str> +/-int: roll initiative for non-player character\n!run_init: sorts, prints, and clears out the initiative roll pool\n!condition <search_term:str>: return the rules regarding the input condition\n!condition list: return a list of all valid conditions/search terms
     ```
     """
 
