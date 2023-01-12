@@ -18,6 +18,10 @@
   background-size: cover;
 }
 
+.title {
+  font-size: 60px
+}
+
 /* .side-img {
   background: url(https://cdn.midjourney.com/666e2374-ce79-4390-bff0-4c0c9fa76ea7/grid_0.png) ; 
   -webkit-background-size: cover;
