@@ -1,11 +1,12 @@
 import discord
-from discord.ext import commands, tasks
+from discord.ext import commands
+# import discord.ext.commands, tasks
 import os
 from dotenv import load_dotenv
 import responses
-import requests
-import re
-import json
+# import requests
+# import re
+# import json
 
 # from cogs import music_cog as music_cog
 
@@ -17,7 +18,6 @@ def run_discord_bot():
     my_secret = os.environ['TOKEN']
     intents = discord.Intents.default()
     intents.message_content = True
-    # client = discord.Client(intents=intents)
     bot = commands.Bot(command_prefix='!', intents=intents)
     
     # Announce bot login
@@ -30,10 +30,11 @@ def run_discord_bot():
         await bot.tree.sync(guild=discord.Object(id=1057692804865855652))
         print(f'{bot.user} is now running!')
     
-
+    @bot.event
     async def send_message(message, user_message, is_private):
     # Handle response and send in PM or channel
       try:
+          print("handles message")
           response = responses.handle_response(user_message, message.author)
           if response:
             await message.author.send(response) if is_private else await message.channel.send(response)
@@ -44,6 +45,7 @@ def run_discord_bot():
     # Message classification
     @bot.event
     async def on_message(message):
+        print("recieves message")
         # Avoid infinite loops
         if message.author == bot.user:
             return 
@@ -60,14 +62,11 @@ def run_discord_bot():
             await send_message(message, user_message, is_private=True)
         else:
             await send_message(message, user_message, is_private=False)
-    
-    commands = 'The commands I can perform are:\n!schedule\n!lookup\n!server\n!helpbot\n!chatbot\n!win\n!latest draw\n\nThe music bot commands are:\n/play <keywords>: finds the song on youtube and plays it in your current channel, will resume playing the current song if it was paused\n/queue: displays the current music queue\n/skip: skips the current song being played\n/clear: stops the music and clears the queue\n/leave: disconnects the bot from the voice channel\n/pause: pauses the current song, or resumes play if the song was paused\n/resume: resumes playing the current song'
-
-    # dm commands on request
-    @bot.event
-    async def on_message(message):
         if message.content.startswith('!commands'):
+            help_commands='The commands I can perform are:\n!schedule\n!lookup\n!server\n!helpbot\n!chatbot\n!win\n!latest draw\n\nThe music bot commands are:\n/play <keywords>: finds the song on youtube and plays it in your current channel, will resume playing the current song if it was paused\n/queue: displays the current music queue\n/skip: skips the current song being played\n/clear: stops the music and clears the queue\n/leave: disconnects the bot from the voice channel\n/pause: pauses the current song, or resumes play if the song was paused\n/resume: resumes playing the current song'
             await message.author.send(commands)
+    
+
 
     newUserDM = 'Hi, Welcome to the server! Type !commands in the server to receive a list of commands that I can perform!'
     @bot.event
@@ -79,63 +78,62 @@ def run_discord_bot():
         await gen_channel.send(f'{member.name} has joined! Everyone say hello!')
     
     # For youtube notifications
-    @tasks.loop(seconds=30)
-    async def check_for_videos():
-        with open("youtube_data.json", "r") as f:
-            data = json.load(f)
+    # @tasks.loop(seconds=30)
+    # async def check_for_videos():
+    #     with open("youtube_data.json", "r") as f:
+    #         data = json.load(f)
         
-        print("Checking for YT uploads now ...")
+    #     print("Checking for YT uploads now ...")
         
-        #checking for all the channels
-        for youtube_channel in data:
-            channel = f"https://youtube.com/channel/{youtube_channel}"
-            html = requests.get(channel+"/videos").text
+    #     #checking for all the channels
+    #     for youtube_channel in data:
+    #         channel = f"https://youtube.com/channel/{youtube_channel}"
+    #         html = requests.get(channel+"/videos").text
 
-            #getting the latest video's url
-            try:
-                latest_video_url = f"https://youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
-            except:
-                continue
+    #         #getting the latest video's url
+    #         try:
+    #             latest_video_url = f"https://youtube.com/watch?v=" + re.search('(?<="videoId":").*?(?=")', html).group()
+    #         except:
+    #             continue
             
-            # Checking if url in json file is the same as latest video url
-            if not str(data[youtube_channel]["latest_video_url"]) == latest_video_url:
-                data[str(youtube_channel)]["latest_video_url"] = latest_video_url
+    #         # Checking if url in json file is the same as latest video url
+    #         if not str(data[youtube_channel]["latest_video_url"]) == latest_video_url:
+    #             data[str(youtube_channel)]["latest_video_url"] = latest_video_url
 
-                with open("youtube_data.json", "w") as f:
-                    json.dump(data, f)
+    #             with open("youtube_data.json", "w") as f:
+    #                 json.dump(data, f)
                 
-                # Getting the channel to send the message in
-                discord_channel_id = data[str(youtube_channel)]["notifying_discord_channel"]
-                discord_channel = bot.get_channel(int(discord_channel_id))
+    #             # Getting the channel to send the message in
+    #             discord_channel_id = data[str(youtube_channel)]["notifying_discord_channel"]
+    #             discord_channel = bot.get_channel(int(discord_channel_id))
 
-                # Sending the message
-                # Mention whatever role  
-                msg = f"@everyone {data[str(youtube_channel)]['channel_name']} just uploaded a video to YouTube. Check it out: {latest_video_url}"
+    #             # Sending the message
+    #             # Mention whatever role  
+    #             msg = f"@everyone {data[str(youtube_channel)]['channel_name']} just uploaded a video to YouTube. Check it out: {latest_video_url}"
 
-                await discord_channel.send(msg)
-        # Command to add more youtube accounts to watch in the json file
+    #             await discord_channel.send(msg)
+    #     # Command to add more youtube accounts to watch in the json file
 
-    @bot.command()
-    async def youtube_notification_data(ctx, channel_id: str, *, channel_name: str):
-        with open("youtube_data.json", "r") as f:
-            data = json.load(f)
+    # @bot.command()
+    # async def youtube_notification_data(ctx, channel_id: str, *, channel_name: str):
+    #     with open("youtube_data.json", "r") as f:
+    #         data = json.load(f)
         
-        data[str(channel_id)] = {}
-        data[str(channel_id)]["channel_name"] = channel_name
-        data[str(channel_id)]["latest_video_url"] = "none"
+    #     data[str(channel_id)] = {}
+    #     data[str(channel_id)]["channel_name"] = channel_name
+    #     data[str(channel_id)]["latest_video_url"] = "none"
 
-        data[str(channel_id)]["notifying_discord_channel"] = "none"
+    #     data[str(channel_id)]["notifying_discord_channel"] = "none"
 
-        with open("youtube_data.json", "w") as f:
-            data = json.dump(data, f)
+    #     with open("youtube_data.json", "w") as f:
+    #         data = json.dump(data, f)
         
-        await ctx.send("Added account data!")
+    #     await ctx.send("Added account data!")
 
-    @bot.command()
-    async def start_notifying(ctx):
-        check_for_videos.start()
-        await ctx.send("Now Notifying")
-    
+    # @bot.command()
+    # async def start_notifying(ctx):
+    #     check_for_videos.start()
+    #     await ctx.send("Now Notifying")
     
     
     bot.run(my_secret)
