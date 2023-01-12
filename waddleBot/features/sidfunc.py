@@ -37,16 +37,16 @@ def generate_dall_e_img(prompt):
 def gif_finder(q):
   q=q[5:]
   giphy_api_key = os.environ['GIPHY_KEY']
-  api_use = giphy_client.DefaultAPI()
+  api_use = giphy_client.DefaultApi()
 
   try:
     api_response = api_use.gifs_search_get(giphy_api_key, q, limit=5, rating='g')
     response_list = list(api_response.data)
     gif = random.choice(response_list)
-
-    gif_embed = discord.Embed(title=q)
-    embed = gif_embed.set_image(url=f"https://media.giphy.com/media/{gif.id}/giphy.gif")
-    return embed
+    # print(gif)
+    # gif_embed = discord.Embed(title=q)
+    # embed = gif_embed.set_image(url=f"https://media.giphy.com/media/{gif.id}/giphy.gif")
+    return gif.embed_url
     
   except ApiException as r:
     print("Exception from API")
