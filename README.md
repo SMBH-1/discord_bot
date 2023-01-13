@@ -31,8 +31,8 @@ In order to use this application, you will need to have discord installed, a dis
 After completing those steps, [create your discord bot here](https://discord.com/developers/applications). For information and a step-by-step guide on creating your bot, [see this video tutorial](https://youtu.be/fU-kWx-OYvE?t=71). 
 
 
-## APIs
-You will need the following APIs to access all of Waddle Bot's functionality:
+## API Keys
+You will need keys from the following APIs to access all of Waddle Bot's functionality:
 - [Cat API](https://thecatapi.com/)
 - [World of Warcraft API](https://develop.battle.net/documentation/world-of-warcraft/game-data-apis)
 - [OpenAI API](https://openai.com/api/)
