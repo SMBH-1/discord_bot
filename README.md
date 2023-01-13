@@ -55,7 +55,7 @@ In order to alert one of your discord channels of a video upload, you will need 
 
 
 ## Connecting Waddle Bot to Your Discord Server
-After creating your own bot, you will need to:
+After connecting Waddle Bot, you will need to:
 1. Create a .env file inside the waddleBot folder
 2. Add your bot's token in your .env file
 
