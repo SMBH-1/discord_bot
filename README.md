@@ -26,9 +26,9 @@ source [FILE PATH OF YOUR VENV HERE]/bin/activate
 pip install -r requirements.txt
 ```
 
-## Creating a Discord Bot
-In order to use this application, you will need to have discord installed, a discord account, and a discord server to launch your bot.
-After completing those steps, [create your discord bot here](https://discord.com/developers/applications). For information and a step-by-step guide on creating your bot, [see this video tutorial](https://youtu.be/fU-kWx-OYvE?t=71). 
+## Using Waddle Bot
+In order to use this application, check the Waddle Bot landing page [HERE](https://discord.com/oauth2/authorize?client_id=1060252204461740173&permissions=4398046511091&scope=bot) to add Waddle Bot to your Discord server. 
+
 
 
 ## API Keys
@@ -158,6 +158,7 @@ Using a series of commands, Waddle Bot can return gifs and images.
 - [Discord API](https://discord.com/developers/docs/intro)
   - [discord.py API](https://discordpy.readthedocs.io/en/stable/api.html)
 - [YouTube API](https://developers.google.com/youtube/v3)
+    - [YouTube DL](https://github.com/ytdl-org/youtube-dl)
 - [OpenAI API](https://beta.openai.com/overview)
 - [Mega Millions API](https://rapidapi.com/avoratechnology/api/mega-millions/details)
 - [Cat API](https://developers.thecatapi.com/view-account/ylX4blBYT9FaoVd6OhvR?report=bOoHBz-8t)
